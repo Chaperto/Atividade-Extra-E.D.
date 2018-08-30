@@ -4,7 +4,12 @@
 
 int main(){
 
+    t_lista* lista = aloca_lista();
 
+
+
+    remove_lista(lista);
+    
 
     return 0;
 }

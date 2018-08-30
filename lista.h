@@ -5,6 +5,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+/* Descrição do trabalho:
+
+
+
+
+
+
+*/
 
 typedef struct elemento t_elemento;
 
@@ -34,9 +43,7 @@ typedef struct lista{
 
 t_lista* aloca_lista();
 
-t_elemento* aloca_elemento(int codigo, char* nome, float preco, int quantidade);
 
-t_produto* aloca_produto(int codigo, char* nome, float preco, int quantidade);
 
 void remove_lista(t_lista* lista);
 

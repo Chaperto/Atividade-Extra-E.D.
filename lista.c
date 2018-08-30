@@ -1,12 +1,13 @@
 #include "lista.h"
+t_elemento* aloca_elemento(int codigo, char* nome, float preco, int quantidade);
 
+t_produto* aloca_produto(int codigo, char* nome, float preco, int quantidade);
 
 
 t_lista* aloca_lista(){
 
-    t_lista* lista;
-
-    lista = malloc(sizeof(lista));
+    
+    t_lista* lista = (t_lista*) malloc(sizeof(lista));
 
     lista->primeiro = NULL;
     lista->fim = NULL;
@@ -21,7 +22,7 @@ return lista;
 
 t_elemento* aloca_elemento(int codigo, char* nome, float preco, int quantidade){
 
-t_elemento* elemento =  malloc(sizeof(elemento));
+t_elemento* elemento = (t_elemento*) malloc(sizeof(elemento));
 t_produto* produto =     aloca_produto(codigo, nome, preco, quantidade);
 elemento->produto = produto;
 
@@ -34,10 +35,10 @@ return elemento;
 
 t_produto* aloca_produto(int codigo, char* nome, float preco, int quantidade){
 
-    t_produto* produto = malloc(sizeof(produto));
-    nome = malloc(sizeof(nome));
+    t_produto* produto = (t_produto*) malloc(sizeof(produto));
+    produto->nome = (char*) malloc(sizeof(char)*strlen(nome));
     produto->codigo = codigo;
-    produto->nome = nome;
+    strcpy(produto->nome, nome);
     produto->preco = preco;
     produto->quantidade = quantidade;
 
@@ -50,6 +51,7 @@ t_produto* aloca_produto(int codigo, char* nome, float preco, int quantidade){
 
 
 void remove_lista(t_lista* lista){
+
 while(lista->primeiro != NULL && lista->fim != NULL){
 
     t_elemento* tmp;
@@ -62,7 +64,7 @@ while(lista->primeiro != NULL && lista->fim != NULL){
 }
 
 
-
+free(lista);
 
 }
 
@@ -70,9 +72,15 @@ while(lista->primeiro != NULL && lista->fim != NULL){
 
 
 void inserir(int posicao, int codigo, char* nome, float preco, int quantidade, t_lista* lista){
-   
+   t_elemento* ptr = aloca_elemento(codigo, nome, preco, quantidade);
 
+   if(lista->primeiro == NULL && lista->fim == NULL){
+       lista->primeiro = ptr;
+       lista->fim = lista->primeiro;
 
+   }
+
+    lista->quantidade++;
 
 }
 
